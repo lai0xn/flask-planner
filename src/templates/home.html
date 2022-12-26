@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <!--for demo wrap-->
+    <h1 style="font-family:monospace;margin-bottom: 50px;font-size: 30px;">My Lists</h1>
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Contnet</th>
+            <th>Creation Date</th>
+            <th>Number of tasks</th>
+            <th>Details </th>
+            <th>Delete </th>
+
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            {% for list in lists %}
+          <tr>
+            <td>{{list.id}}</td>
+            <td>{{list.name}}</td>
+            <td>{{list.created_at.date()}}</td>
+            <td>{{list.get_tasks_number()}}</td>
+            <td>
+
+            <a href="/list/{{list.id}}"><button style="background-color: #a888ff; border-radius: 8px;border:none;color:white;width:70px"  type="submit">Details</button></a>
+
+            </td>
+            <td>
+
+                <a href="/delete/list/{{list.id}}"><button style="background-color: red; border-radius: 8px;border:none;color:white;width:70px"  type="submit">Delete</button></a>
+    
+                </td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+    <a href="/create-list"><button style="background-color: #a888ff;" class="todo-btn" type="submit">New list</button></a>
+    
+  </section>
+  
+
+
+{% endblock content %}

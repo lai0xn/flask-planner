@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>Signup</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
+{% endblock %}
+{% block content %}
+<div style="margin-top: 100px;">
+    {% if form.errors %}
+    <div class="todo" style="background-color:#a888ff;margin-top: 30px; padding: 12px;font-family: 'Courier New', Courier, monospace;color: white;">{{ form.errors }}</div>
+    {% endif %}
+    <div class="form">
+    <h2 style="margin-top:50px; margin-bottom: 20px;">Signup</h2>
+        
+        <form method="post">
+            {{form.hidden_tag()}}
+            <div class="login-input">
+                {{form.email(placeholder="Your Email")}}
+
+            </div>
+            <div class="login-input ">
+                {{form.password(placeholder="Your Password")}}
+               
+
+            </div>
+            <div class="login-input ">
+                {{form.password2(placeholder="Confirm Your Password")}}
+            </div>
+            
+            <button style="background-color: #1b1c21;" class="todo-btn" type="submit">Login</button>
+
+
+        </form>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Flask Todo</title>
+{% endblock %}
+
+{% block content %}
+<div>
+    <div style="margin-top: 50px;" class="title">
+        <h2 sty>My TodoList</h2>
+
+    </div>
+    {% for todo in list.todos %}
+    <div class="todo">
+        {% if todo.completed == True %}
+        <h3 style="text-decoration: line-through;" >{{list.todos.index(todo) +1 }} - {{todo.content}}</h3>
+        {% else %}
+        <h3 >{{list.todos.index(todo) +1 }} - {{todo.content}}</h3>
+
+        {% endif %}
+        <div style="margin-left:auto">
+            {% if todo.completed == True %}
+            <a style="margin-right: 10px;" href="/list/complete/{{todo.id}}"><img src="{{url_for('static',filename='images/x-icon-png.png')}}" width="20"/></a>
+            {% else %}
+            <a style="margin-right: 10px;" href="/list/complete/{{todo.id}}"><img src="{{url_for('static',filename='images/tic.webp')}}" width="20"/></a>
+
+            {% endif %}
+            
+            <a  href="/list/delete/{{todo.id}}"><img src="{{url_for('static',filename='images/trash-bin.png')}}" width="20"/></a>
+        </div>
+       
+    </div>
+    {% endfor %}
+
+
+    <form method="post">
+        <div >
+            <input class="input" type="text" name="content" id="content" placeholder="Add Todo" />
+        </div>
+
+            <button class="todo-btn" type="submit">Add Todo</button>
+    </form>
+</div>
+
+
+{% endblock content %}
